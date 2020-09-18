@@ -5,13 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
-    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+
     <!-- Bootstrap CORE CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
+
+    <main class="container">
+        <!-- Dashboard Header -->
+        <div class="row">
+            <h1>Weather Dashboard Header</h1>
+        </div>
+
+        <div class="row">
+            <!-- Navigation Sidebar -->
+            <nav class="col-md-3 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+
+                    <h5>Search for a City:</h5>
+                    <form class="form-inline">
+                        <input id="city-search" class="form-control mr-sm-2" type="search" placeholder="City"
+                            aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-info my-2 my-sm-0" type="submit" id="button-addon2"><i
+                                    class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">City 1</li>
+                            <li class="list-group-item">City 2</li>
+                            <li class="list-group-item">City 3</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+
+            <!-- Main Weather Display & Forecast -->
+            <main class="col-md-9">
+                <div class="row card">
+                    <div class="row card-body">
+                        <h3 class="card-title">City (Date DD/MM/YY)</h3>
+                    </div>
+                    <div class="row card-body">
+                        <p class="card-text">Temperature</p>
+                    </div>
+                    <div class="row card-body">
+                        <p class="card-text">Humidity</p>
+                    </div>
+                    <div class="row card-body">
+                        <p class="card-text">Wind Speed</p>
+                    </div>
+                    <div class="row card-body">
+                        <p class="card-text">UV Index</p>
+                    </div>
+                </div>
+                <div class="row card-body">
+                    <div class="card-title">5 Day Forecast</div>
+                    <div class="row">
+                        <div class="col">
+                            One of five columns
+                        </div>
+                        <div class="col">
+                            Two of five columns
+                        </div>
+                        <div class="col">
+                            Three of five columns
+                        </div>
+                        <div class="col">
+                            Four of five columns
+                        </div>
+                        <div class="col">
+                            Five of five columns
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+    </main>
 
     <!-- Bootstrap CORE JavaScript -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
