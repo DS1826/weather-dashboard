@@ -7,9 +7,10 @@ $(document).ready(function () {
         var citySearch = $("#city-search").val();
         console.log(citySearch);
 
-        var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&APPID=" + appID;
+        // Call for current weather using city name in main search 
+        var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&units=imperial&APPID=" + appID;
 
-        var fiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=" + appID;
+        var fiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&units=imperial&appid=" + appID;
 
 
         $.ajax({
@@ -20,12 +21,19 @@ $(document).ready(function () {
 
             var results = response;
 
+            // Converting UNIX timestamp to current date with Moment JS
+            var currentDate = moment.unix(results.dt).format("(MM/DD/YY)");
+            console.log(currentDate);
+    
+            
+            // Rendering weather data to HTML for TODAY
             $("#city").text(results.name);
+            $("#todays-date").html(currentDate);
             $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + results.weather[0].icon + ".png");
             $("#description").html(results.weather[0].description);
-            $("#temperature").html(results.main.temp);
-            $("#humidity").html(results.main.humidity);
-            $("#wind-speed").html(results.wind.speed);
+            $("#temperature").html(Math.trunc(results.main.temp) +"°F");
+            $("#humidity").html(results.main.humidity + "%");
+            $("#wind-speed").html(results.wind.speed + " MPH");
         });
 
         $.ajax({
@@ -40,6 +48,7 @@ $(document).ready(function () {
 
         });
 
+    
 
 
         //    $.getJSON(weather, function (json) {
