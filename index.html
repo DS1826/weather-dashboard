@@ -25,23 +25,23 @@
         <div class="row">
             <!-- Navigation Sidebar -->
             <nav class="col-md-3 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-
+                <div>
                     <h5>Search for a City:</h5>
                     <form class="form-inline">
                         <input id="city-search" class="form-control mr-sm-2" type="search" placeholder="City"
                             aria-label="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-info my-2 my-sm-0" type="submit" id="button-addon2"><i
+                            <button class="query-btn btn btn-info my-2 my-sm-0" type="button" id="button-addon2"><i
                                     class="fas fa-search"></i></button>
                         </div>
                     </form>
-
+                    <br>
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">City 1</li>
-                            <li class="list-group-item">City 2</li>
-                            <li class="list-group-item">City 3</li>
+                            <li class="list-group-item">New York</li>
+                            <li class="list-group-item">Los Angeles</li>
+                            <li class="list-group-item">Chicago</li>
+                            <li class="list-group-item">Houston</li>
                         </ul>
                     </div>
 
@@ -53,19 +53,20 @@
             <main class="col-md-9">
                 <div class="row card">
                     <div class="row card-body">
-                        <h3 class="card-title">City (Date DD/MM/YY)</h3>
+                        <h3 class="card-title"><span id="city">City</span><span id="todays-date">(MM/DD/YY)</span></h3>
+                        <img id="weather_image" src="">
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">Temperature</p>
+                        <p class="card-text">Description: <span id="description"></span></p>
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">Humidity</p>
+                        <p class="card-text">Temperature: <span id="temperature"></span></p>
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">Wind Speed</p>
+                        <p class="card-text">Humidity: <span id="humidity"></span></p>
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">UV Index</p>
+                        <p class="card-text">Wind Speed: <span id="wind-speed"></span></p>
                     </div>
                 </div>
                 <div class="row card-body">
@@ -95,9 +96,8 @@
     </main>
 
     <!-- Bootstrap CORE JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
