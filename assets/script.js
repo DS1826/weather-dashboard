@@ -9,7 +9,8 @@ $(document).ready(function () {
 
         var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&APPID=" + appID;
 
-        console.log(weather);
+        var fiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&appid=" + appID;
+
 
         $.ajax({
             url: weather,
@@ -25,6 +26,18 @@ $(document).ready(function () {
             $("#temperature").html(results.main.temp);
             $("#humidity").html(results.main.humidity);
             $("#wind-speed").html(results.wind.speed);
+        });
+
+        $.ajax({
+            url: fiveDay,
+            method: "GET"
+        }).then(function (summary) {
+            console.log(summary);
+
+            var forecast = summary.list;
+            console.log(forecast);
+
+
         });
 
 
