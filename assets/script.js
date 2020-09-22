@@ -3,9 +3,19 @@ $(document).ready(function () {
     var appID = "2a69499345df0d7995aa3cfc5923674c";
 
     $(".query-btn").on("click", function () {
-        console.log("Search Button has been clicked");
-        var citySearch = $("#city-search").val();
-        console.log(citySearch);
+
+        var buttonVal = $(this).attr("data-id");
+
+        // If else will return citySearch value based on which search button was clicked
+        if (buttonVal === 0) {
+            console.log("Button ID Value is " + buttonVal);
+            console.log("Search Button has been clicked");
+            var citySearch = $("#city-search").val();
+            console.log(citySearch);
+        } else {
+            var citySearch = $(this).text();
+            console.log(citySearch);
+        }
 
         // Call for current weather using city name in main search 
         var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&units=imperial&APPID=" + appID;
@@ -52,10 +62,6 @@ $(document).ready(function () {
                 var tempMin = $("<p>").text("Low: " + Math.trunc(forecast[i].main.temp_min) + "°F");
                 var tempMax = $("<p>").text("High: " + Math.trunc(forecast[i].main.temp_max) + "°F");
                 
-                // var h = moment.unix(forecast[0].dt).format("MM/DD");
-                // var tempMin = forecast[0].main.temp_min;
-                // var tempMax = forecast[0].main.temp_max;
-
                 console.log(h);
 
                 fiveDayDiv.append(h)
