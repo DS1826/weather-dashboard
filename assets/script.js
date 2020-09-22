@@ -12,7 +12,6 @@ $(document).ready(function () {
 
         var fiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&units=imperial&appid=" + appID;
 
-
         $.ajax({
             url: weather,
             method: "GET"
@@ -40,31 +39,35 @@ $(document).ready(function () {
             url: fiveDay,
             method: "GET"
         }).then(function (summary) {
-            console.log(summary);
+        
 
             var forecast = summary.list;
             console.log(forecast);
+        
+            // For loop to display forecast data in HTML 
+            for (var i = 0; i < forecast.length; i+=8) {
+                var fiveDayDiv = $("<div>").attr("class", "col");
+                var h = $("<h5>").text(moment(forecast[i].dt_txt).format("MM/DD"));
+                var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + forecast[i].weather[0].icon + ".png");
+                var tempMin = $("<p>").text("Low: " + Math.trunc(forecast[i].main.temp_min) + "°F");
+                var tempMax = $("<p>").text("High: " + Math.trunc(forecast[i].main.temp_max) + "°F");
+                
+                // var h = moment.unix(forecast[0].dt).format("MM/DD");
+                // var tempMin = forecast[0].main.temp_min;
+                // var tempMax = forecast[0].main.temp_max;
+
+                console.log(h);
+
+                fiveDayDiv.append(h)
+                fiveDayDiv.append(img);
+                fiveDayDiv.append(tempMax);
+                fiveDayDiv.append(tempMin);
+                $("#five-day").append(fiveDayDiv);
+            }
 
 
         });
 
-    
-
-
-        //    $.getJSON(weather, function (json) {
-        //     $("#city").html(json.name);
-        //     // $("#main_weather").html(json.weather[0].main);
-        //     // $("#description_weather").html(json.weather[0].description);
-        //     $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + json.weather[0].icon + ".png");
-        //     $("#temperature").html(json.main.temp);
-        //     // $("#pressure").html(json.main.pressure);
-        //     $("#humidity").html(json.main.humidity);
-        //     $("#wind-speed").html(json.main.wind.speed);
-        //     $("#uv").html(json.main.humidity);
-        // });
-
-
     })
-
 
 });
