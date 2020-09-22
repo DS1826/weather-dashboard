@@ -55,7 +55,7 @@ $(document).ready(function () {
             console.log(forecast);
         
             // For loop to display forecast data in HTML 
-            for (var i = 0; i < forecast.length; i+=8) {
+            for (var i = 3; i < forecast.length; i+=8) {
                 var fiveDayDiv = $("<div>").attr("class", "col");
                 var h = $("<h5>").text(moment(forecast[i].dt_txt).format("MM/DD"));
                 var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + forecast[i].weather[0].icon + ".png");
