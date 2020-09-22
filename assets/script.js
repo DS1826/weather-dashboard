@@ -2,12 +2,16 @@ $(document).ready(function () {
 
     var appID = "2a69499345df0d7995aa3cfc5923674c";
 
+    var citiesSearched = [];
+
+    init();
+
     $(".query-btn").on("click", function () {
 
         var buttonVal = $(this).attr("data-id");
 
         // If else will return citySearch value based on which search button was clicked
-        if (buttonVal === 0) {
+        if (buttonVal === "0") {
             console.log("Button ID Value is " + buttonVal);
             console.log("Search Button has been clicked");
             var citySearch = $("#city-search").val();
@@ -30,7 +34,7 @@ $(document).ready(function () {
 
             var results = response;
 
-            // Converting UNIX timestamp to current date with Moment JS
+            // Converting UNIX timestamp to current date with Moment.js
             var currentDate = moment.unix(results.dt).format("(MM/DD/YY)");
             console.log(currentDate);
     
@@ -49,12 +53,13 @@ $(document).ready(function () {
             url: fiveDay,
             method: "GET"
         }).then(function (summary) {
-        
-
+    
             var forecast = summary.list;
             console.log(forecast);
+
+            $("#five-day").empty();
         
-            // For loop to display forecast data in HTML 
+            // For loop displays 5 day forecast data in HTML 
             for (var i = 3; i < forecast.length; i+=8) {
                 var fiveDayDiv = $("<div>").attr("class", "col");
                 var h = $("<h5>").text(moment(forecast[i].dt_txt).format("MM/DD"));
@@ -74,6 +79,28 @@ $(document).ready(function () {
 
         });
 
+        citiesSearched.push(citySearch);
+        localStorage.setItem("city", JSON.stringify(citiesSearched));
     })
 
+    function renderSearchHistory() {
+        $("#search-history").empty();
+
+        //Render new button list from search history
+        for (var i = 0; i < citiesSearched.length; i++) {
+            var historyBtn = $("<button>").attr("class", "btn query-btn").text(citiesSearched[i]);
+            $("#search-history").append(historyBtn);
+        }
+    }
+
+    function init() {
+        var storedSearch = JSON.parse(localStorage.getItem("city"));
+        console.log(storedSearch);
+        if(storedSearch !== null) {
+            citiesSearched = storedSearch;
+        }
+        renderSearchHistory();
+
+    }
+        
 });
