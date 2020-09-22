@@ -1,0 +1,19 @@
+.low-uv {
+    background-color: green;
+}
+
+.mod-uv {
+    background-color: yellow;
+}
+
+.high-uv {
+    background: orange;
+}
+
+.very-high-uv {
+    background-color: red;
+}
+
+.extreme-uv {
+    background-color: purple;
+}
