@@ -1,3 +1,23 @@
+
+  /* Main Content */
+
+#wrapper {
+    /* Positioning */
+    margin-bottom: 10px;
+    /* padding-top: 40px; */
+    padding-bottom: 40px;
+  }
+
+  #title h1 {
+      margin: 0 auto;
+  }
+
+/* UV Index Classes */
+.text-muted {
+    color: #6c757d!important;
+}
+
+
 .low-uv {
     background-color: green;
 }
