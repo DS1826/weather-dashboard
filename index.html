@@ -12,7 +12,8 @@
     <!-- Bootstrap CORE CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="assets/style.css">
+    </head>
 
 <body>
 
@@ -27,20 +28,20 @@
             <nav class="col-md-3 d-none d-md-block bg-light sidebar">
                 <div>
                     <h5>Search for a City:</h5>
-                    <form class="form-inline">
-                        <input id="city-search" class="form-control mr-sm-2" type="search" placeholder="City"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="query-btn btn btn-info my-2 my-sm-0" type="button" id="button-addon2" data-id="0"><i
-                                    class="fas fa-search"></i></button>
-                        </div>
+                    <form class="form-inline input-group mb-3">
+                            <input id="city-search" class="form-control mr-sm-2" type="search" placeholder="City"
+                                aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="query-btn btn btn-info my-2 my-sm-0" type="button" id="button-addon2"
+                                    data-id="0"><i class="fas fa-search"></i></button>
+                            </div>
                     </form>
                     <br>
                     <h6>Search History:</h6>
                     <div class="card">
                         <div id="search-history" class="btn-group btn-group-vertical">
-
                         </div>
+                        <button id="clear-search" class="btn btn-info" type="button">Clear All</button>
                     </div>
                     <br>
                     <h5>Popular Destinations:</h5>
@@ -56,11 +57,11 @@
                             <button class="btn query-btn" type="button" data-id="8">San Diego</button>
                             <button class="btn query-btn" type="button" data-id="9">Seattle</button>
                             <button class="btn query-btn" type="button" data-id="10">Boston</button>
-                            
-                        </duv>
-                    </div>
 
-                </div>
+                            </duv>
+                        </div>
+
+                    </div>
             </nav>
 
 
@@ -68,7 +69,8 @@
             <main class="col-md-9">
                 <div class="row card">
                     <div class="row card-body">
-                        <h3 class="card-title"><span id="city">City</span><span id="todays-date">&nbsp;MM/DD/YY</span></h3>
+                        <h3 class="card-title"><span id="city">City</span><span id="todays-date">&nbsp;MM/DD/YY</span>
+                        </h3>
                         <img id="weather_image" src="">
                     </div>
                     <div class="row card-body">
@@ -83,13 +85,16 @@
                     <div class="row card-body">
                         <p class="card-text">Wind Speed: <span id="wind-speed"></span></p>
                     </div>
+                    <div class="row card-body">
+                        <p class="card-text">UV Index: <span id="uv-index"></span></p>
+                    </div>
                 </div>
                 <div class="row card-body">
                     <h3 class="row card-title">5 Day Forecast
                     </h3>
                 </div>
                 <div id="five-day" class="row">
-                      
+
                 </div>
 
             </main>
