@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
-    </head>
+</head>
 
 <body>
 
-    <main id="wrapper" class="container">
+    <main id="wrapper" class="container bg-light">
         <!-- Dashboard Header -->
         <header id="title" class="row card text-white bg-info mb-3">
             <h1>Weather Dashboard</h1>
@@ -29,12 +29,12 @@
                 <div>
                     <h5>Search for a City:</h5>
                     <form class="form-inline input-group mb-3">
-                            <input id="city-search" class="form-control mr-sm-2" type="search" placeholder="City"
-                                aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="query-btn btn btn-info my-2 my-sm-0" type="button" id="button-addon2"
-                                    data-id="0"><i class="fas fa-search"></i></button>
-                            </div>
+                        <input id="city-search" class="form-control mr-sm-2" type="search" placeholder="City"
+                            aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="query-btn btn btn-info my-2 my-sm-0" type="button" id="button-addon2"
+                                data-id="0"><i class="fas fa-search"></i></button>
+                        </div>
                     </form>
                     <br>
                     <h6>Search History:</h6>
@@ -66,37 +66,38 @@
 
 
             <!-- Main Weather Display & Forecast -->
-            <main class="col-md-9">
+            <main class="col-md-9 card">
                 <div class="row card">
                     <div class="row card-body">
-                        <h3 class="card-title"><span id="city">Search Weather for your Destination</span><span id="todays-date">&nbsp;</span>
+                        <h3 class="card-title"><span id="city">Search Weather for your Destination</span><span
+                                id="todays-date">&nbsp;</span>
                         </h3>
                         <img id="weather_image" src="">
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">Description: <span id="description"></span></p>
+                        <h5 class="card-text">Description: <span id="description"></span></h5>
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">Temperature: <span id="temperature"></span></p>
+                        <h5 class="card-text">Temperature: <span id="temperature"></span></h5>
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">Humidity: <span id="humidity"></span></p>
+                        <h5 class="card-text">Humidity: <span id="humidity"></span></h5>
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">Wind Speed: <span id="wind-speed"></span></p>
+                        <h5 class="card-text">Wind Speed: <span id="wind-speed"></span></h5>
                     </div>
                     <div class="row card-body">
-                        <p class="card-text">UV Index: <span id="uv-index"></span></p>
+                        <h5 class="card-text">UV Index: <span id="uv-index"></span></h5>
                     </div>
                 </div>
-                <div class="row card-body">
-                    <h3 class="row card-title">5 Day Forecast
-                    </h3>
+                
+                <!-- 5 Day Forecast -->
+                    <div class="row card"></div>
+                    <div class="row card-body">
+                        <h3 class="card-title">5 Day Forecast</h3>
+                    </div>
+                    <div id="five-day" class="row card-body text-center"></div>
                 </div>
-                <div id="five-day" class="row">
-
-                </div>
-
             </main>
         </div>
 
@@ -110,6 +111,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="assets/script.js"></script>
+    <script src="assets/window.js"></script>
 </body>
 
 </html>
