@@ -2,9 +2,9 @@ $(document).ready(function () {
 
     var appID = "2a69499345df0d7995aa3cfc5923674c";
 
-    var citiesSearched = [];
+    var citiesSearched = localStorage.getItem("city") ? JSON.parse(localStorage.getItem("city")) : [];
 
-    init();
+    renderSearchHistory();
 
     $(".query-btn").on("click", function () {
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
 
         var fiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&units=imperial&appid=" + appID;
 
-
+        // Ajax query for current weather at city searched
         $.ajax({
             url: weather,
             method: "GET"
@@ -36,72 +36,74 @@ $(document).ready(function () {
             var results = response;
             var lat = response.coord.lat;
             var lon = response.coord.lon;
-            
+
             // Converting UNIX timestamp to current date with Moment.js
             var currentDate = moment.unix(results.dt).format("(MM/DD/YY)");
             console.log(currentDate);
-            
+
             // Rendering weather data to HTML for TODAY
             $("#city").text(results.name);
             $("#todays-date").html(currentDate);
             $("#weather_image").attr("src", "http://openweathermap.org/img/w/" + results.weather[0].icon + ".png");
             $("#description").html(results.weather[0].description);
-            $("#temperature").html(Math.trunc(results.main.temp) +"°F");
+            $("#temperature").html(Math.trunc(results.main.temp) + "°F");
             $("#humidity").html(results.main.humidity + "%");
             $("#wind-speed").html(results.wind.speed + " MPH");
-           
+
             // Call and nested Ajax query for UV Index
             var uvIndex = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + appID;
-       
+
+            // Ajax query for current UV Index at city searched
             $.ajax({
                 url: uvIndex,
                 method: "GET"
-            }).then(function(uvdata) {
+            }).then(function (uvdata) {
                 console.log(uvdata);
 
                 var uvIndex = (uvdata.value);
-                
+
                 // Render UV Index to HTML
                 $("#uv-index").html(uvIndex);
 
                 if (uvIndex >= 0 && uvIndex < 3) {
                     $("#uv-index").addClass("low-uv");
-                } 
+                }
                 if (uvIndex >= 3 && uvIndex < 6) {
                     $("#uv-index").addClass("mod-uv");
-                } 
+                }
                 if (uvIndex >= 6 && uvIndex < 8) {
                     $("#uv-index").addClass("high-uv");
-                } 
+                }
                 if (uvIndex >= 8 && uvIndex < 11) {
                     $("#uv-index").addClass("very-high-uv");
-                } 
+                }
                 if (uvIndex >= 11) {
                     $("#uv-index").addClass("extreme-uv");
                 }
-                
+
             });
 
         });
 
+        // Ajax query for 5 day forecast for city searched
         $.ajax({
             url: fiveDay,
             method: "GET"
         }).then(function (summary) {
-    
+
             var forecast = summary.list;
             console.log(forecast);
 
             $("#five-day").empty();
-        
+
             // For loop displays 5 day forecast data in HTML 
-            for (var i = 3; i < forecast.length; i+=8) {
+            for (var i = 3; i < forecast.length; i += 8) {
                 var fiveDayDiv = $("<div>").attr("class", "col");
                 var h = $("<h5>").text(moment(forecast[i].dt_txt).format("MM/DD"));
                 var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + forecast[i].weather[0].icon + ".png");
                 var tempMin = $("<p>").text("Low: " + Math.trunc(forecast[i].main.temp_min) + "°F");
                 var tempMax = $("<p>").text("High: " + Math.trunc(forecast[i].main.temp_max) + "°F");
-                
+
                 console.log(h);
 
                 fiveDayDiv.append(h)
@@ -111,37 +113,35 @@ $(document).ready(function () {
                 $("#five-day").append(fiveDayDiv);
             }
 
-
         });
 
+        // Sets input for city searched to local storage
         citiesSearched.push(citySearch);
         localStorage.setItem("city", JSON.stringify(citiesSearched));
     })
 
-    // Need to address duplicate entries in search history array
+    // Displays search history from local storage array
     function renderSearchHistory() {
         $("#search-history").empty();
 
-        //Render new button list from local storage search history
-        for (var i = 0; i < citiesSearched.length; i++) {
+        // Removes duplicates from local storage array 
+        var noDupsStoredSearch = [...new Set(citiesSearched)];
+
+        //Renders new button list from local storage search history
+        for (var i = 0; i < noDupsStoredSearch.length; i++) {
             var historyBtn = $("<button>").attr("class", "btn query-btn").text(citiesSearched[i]);
             $("#search-history").append(historyBtn);
         }
     }
 
-    function init() {
-        // Get stored cities from localStorage
-        var storedSearch = JSON.parse(localStorage.getItem("city"));
-        console.log(storedSearch);
-        var noDupsStoredSearch = [...new Set(storedSearch)];
+    // Onclick function clears search history display
+    $("#clear-search").on("click", function () {
+        console.log("Clear All has been clicked")
+        localStorage.clear();
+        $("#search-history").empty();
+        var citiesSearched = "";
 
-        // If todos were retrieved from localStorage, update cities array
-        if(storedSearch !== null) {
-            citiesSearched = noDupsStoredSearch;
-        }
+    });
 
-        renderSearchHistory();
-    }
 
-        
 });
