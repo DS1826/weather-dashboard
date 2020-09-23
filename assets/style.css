@@ -4,7 +4,6 @@
 #wrapper {
     /* Positioning */
     margin-bottom: 10px;
-    /* padding-top: 40px; */
     padding-bottom: 40px;
   }
 
@@ -12,11 +11,22 @@
       margin: 0 auto;
   }
 
-/* UV Index Classes */
-.text-muted {
-    color: #6c757d!important;
-}
+  /* 5 Day Forecast */
 
+  #five-day-div {
+      margin: 0px 5px;
+      padding: 20px 5px;
+      background-color: #077293;
+      color: whitesmoke;
+      border-radius: 5px;
+  }
+
+/* UV Index*/
+
+#uv-index {
+    padding: 10px;
+    border-radius: 5px;
+}
 
 .low-uv {
     background-color: green;
@@ -24,6 +34,7 @@
 
 .mod-uv {
     background-color: yellow;
+    border: 1px yellow;
 }
 
 .high-uv {
