@@ -24,9 +24,9 @@ $(document).ready(function () {
         }
 
         // Call for current weather using city name in main search 
-        var weather = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&units=imperial&APPID=" + appID;
+        var weather = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&units=imperial&APPID=" + appID;
 
-        var fiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&units=imperial&appid=" + appID;
+        var fiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + citySearch + "&units=imperial&appid=" + appID;
 
         // Ajax query for current weather at city searched
         $.ajax({
@@ -53,7 +53,7 @@ $(document).ready(function () {
             $("#wind-speed").html(results.wind.speed + " MPH");
 
             // Call and nested Ajax query for UV Index
-            var uvIndex = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + appID;
+            var uvIndex = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=" + appID;
 
             // Ajax query for current UV Index at city searched
             $.ajax({
