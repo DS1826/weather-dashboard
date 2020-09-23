@@ -2,7 +2,9 @@ $(document).ready(function () {
 
     var appID = "2a69499345df0d7995aa3cfc5923674c";
 
-    var citiesSearched = localStorage.getItem("city") ? JSON.parse(localStorage.getItem("city")) : [];
+    var citiesSearched = [];
+
+    init();
 
     renderSearchHistory();
 
@@ -98,11 +100,11 @@ $(document).ready(function () {
 
             // For loop displays 5 day forecast data in HTML 
             for (var i = 3; i < forecast.length; i += 8) {
-                var fiveDayDiv = $("<div>").attr("class", "col");
-                var h = $("<h5>").text(moment(forecast[i].dt_txt).format("MM/DD"));
+                var fiveDayDiv = $("<div>").attr("class", "col").attr("id", "five-day-div");
+                var h = $("<h4>").text(moment(forecast[i].dt_txt).format("MM/DD"));
                 var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + forecast[i].weather[0].icon + ".png");
-                var tempMin = $("<p>").text("Low: " + Math.trunc(forecast[i].main.temp_min) + "°F");
-                var tempMax = $("<p>").text("High: " + Math.trunc(forecast[i].main.temp_max) + "°F");
+                var tempMin = $("<h5>").text("Low: " + Math.trunc(forecast[i].main.temp_min) + "°F");
+                var tempMax = $("<h5>").text("High: " + Math.trunc(forecast[i].main.temp_max) + "°F");
 
                 console.log(h);
 
@@ -124,22 +126,30 @@ $(document).ready(function () {
     function renderSearchHistory() {
         $("#search-history").empty();
 
-        // Removes duplicates from local storage array 
-        var noDupsStoredSearch = [...new Set(citiesSearched)];
-
         //Renders new button list from local storage search history
-        for (var i = 0; i < noDupsStoredSearch.length; i++) {
+        for (var i = 0; i < citiesSearched.length; i++) {
             var historyBtn = $("<button>").attr("class", "btn query-btn").text(citiesSearched[i]);
             $("#search-history").append(historyBtn);
         }
     }
 
+    function init() {
+        var storedSearch = JSON.parse(localStorage.getItem("city"));
+        console.log(storedSearch);
+        var noDupsStoredSearch = [...new Set(storedSearch)];
+
+        if (storedSearch !== null) {
+            citiesSearched = noDupsStoredSearch;
+        } else {
+            citiesSearched = [];
+        }
+
+    }
     // Onclick function clears search history display
     $("#clear-search").on("click", function () {
         console.log("Clear All has been clicked")
         localStorage.clear();
         $("#search-history").empty();
-        var citiesSearched = "";
 
     });
 
